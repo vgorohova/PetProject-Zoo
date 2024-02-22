@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoo.web", "zoo.web\zoo.web.csproj", "{4CC25320-72D9-44DA-90E7-C3612415FA58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo.API", "zoo.api\Zoo.API.csproj", "{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{4CC25320-72D9-44DA-90E7-C3612415FA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CC25320-72D9-44DA-90E7-C3612415FA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CC25320-72D9-44DA-90E7-C3612415FA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
