@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoo.web", "zoo.web\zoo.web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo.API", "zoo.api\Zoo.API.csproj", "{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zoo.WebAPI", "zoo.WebApi\Zoo.WebAPI.csproj", "{620F261A-B864-4A95-A487-16010E7B3D8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{128DD5AF-17B5-45EA-88F2-CA5BCD7A3FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620F261A-B864-4A95-A487-16010E7B3D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620F261A-B864-4A95-A487-16010E7B3D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620F261A-B864-4A95-A487-16010E7B3D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620F261A-B864-4A95-A487-16010E7B3D8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
