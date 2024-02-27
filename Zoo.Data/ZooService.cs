@@ -11,28 +11,44 @@ public class ZooService
         _context = context;
     }
 
-    public IEnumerable<AnimalClass> GetAllAnimalClasses()
+    public async Task<IEnumerable<AnimalClass>> GetAllAnimalClasses()
     {
-        return _context.AnimalClasses
+        return await _context.AnimalClasses
                 .AsNoTracking()
                 .OrderBy(ac => ac.ClassTitle)
-                .ToArray();
+                .ToListAsync();
     }
-    public IEnumerable<Animal> GetAllAnimals()
+    public async Task<IEnumerable<Animal>> GetAllAnimals()
     {
-        return _context.Animals
+        return await _context.Animals
                 .Include(a => a.Classification)
                 .AsNoTracking()
                 .OrderByDescending(a => a.Id)
-                .ToArray();
+                .ToListAsync();
     }
 
-    public Animal? GetAnimal(int id)
+    public async Task<Animal?> GetAnimal(int id)
     {
-        return _context.Animals
+        return await _context.Animals
                 .AsNoTracking()
                 .Include(a => a.Classification)
-                .SingleOrDefault(a => a.Id == id);
+                .SingleOrDefaultAsync(a => a.Id == id);
+    }
+
+    public async Task<IEnumerable<Animal>> GetAnimalByClass(string className) 
+    {
+        var cl = _context.AnimalClasses
+                    .SingleOrDefault(a => a.ClassTitle.ToLower() == className);
+
+        if (cl == null)
+            return new List<Animal>();
+        
+        return await _context.Animals
+                .AsNoTracking()
+                .Include(a => a.Classification)
+                .Where(a => a.Classification.Id == cl.Id)
+                .OrderByDescending(a => a.Id)
+                .ToListAsync();
     }
 
     public Animal AddAnimal(Animal animal)
@@ -66,13 +82,14 @@ public class ZooService
         return animal;
     }
 
-    public void DeleteAnimal(int id)
+    public bool DeleteAnimal(int id)
     {
         var animal = _context.Animals.Find(id);
-        if (animal != null)
-        {
-            _context.Animals.Remove(animal);
-            _context.SaveChanges();
-        }
+        if (animal == null) return false;
+
+        _context.Animals.Remove(animal);
+        _context.SaveChanges();
+        
+        return true;
     }
 }

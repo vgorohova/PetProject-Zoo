@@ -1,0 +1,24 @@
+@Zoo.WebAPI_HostAddress = http://localhost:5151
+
+GET {{Zoo.WebAPI_HostAddress}}/
+Accept: application/json
+
+###
+
+GET {{Zoo.WebAPI_HostAddress}}/animals
+Accept: application/json
+
+###
+
+GET {{Zoo.WebAPI_HostAddress}}/animals/1
+Accept: application/json
+
+###
+
+GET {{Zoo.WebAPI_HostAddress}}/animals/5
+Accept: application/json
+
+###
+
+GET {{Zoo.WebAPI_HostAddress}}/animals/class/tiger
+Accept: application/json
