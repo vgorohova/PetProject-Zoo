@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+WORKDIR /Zoo.Data
+COPY "./Zoo.Data/Zoo.Data.csproj" .
+RUN dotnet restore
+COPY "Zoo.Data" .
+RUN dotnet publish -c release -o /app
+
+WORKDIR /Zoo.API
+COPY "./Zoo.API/Zoo.API.csproj" .
+RUN dotnet restore
+COPY "Zoo.API" .
+RUN dotnet publish -c release -o /app
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+EXPOSE 5050
+# EXPOSE 5051
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "Zoo.API.dll"]
+

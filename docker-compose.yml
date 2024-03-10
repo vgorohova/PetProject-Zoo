@@ -1,0 +1,48 @@
+version: '3.4'
+
+services: 
+
+  zoo-postgres:
+    image: postgres
+    restart: always
+    container_name: zoo-postgres
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=zoo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  zoo-api:
+    image: zoo-api:latest
+    container_name: zoo-api
+    build: 
+      context: .
+      dockerfile: DOCKERFILE
+    environment:
+      - POSTGRES_DB=zoo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5050
+      # - ASPNETCORE_HTTPS_PORTS=5051
+    ports:
+      - "5050:5050"
+      # - "5051:5051"
+    depends_on: 
+      - zoo-postgres
+
+  zoo-web:
+    image: zoo-web:latest
+    container_name: zoo-web
+    build:
+      context: .
+      dockerfile: ./Zoo.Web/DOCKERFILE
+    environment: 
+      - ZooAPIEndpoint=http://zoo-api:8080
+    ports:
+      - "32000:8080"
+    depends_on: 
+      - zoo-api

@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ZooContext>();
 builder.Services.AddScoped<ZooService>();
 
+// builder.Services.AddDbContext<ZooContext>(options =>
+//             options.UseNpgsql(Configuration.GetConnectionString("ZooContext")));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -68,11 +71,13 @@ app.MapGet("/animals/{id}", async (int id, ZooService s) =>
 //     .WithTags("Delete fruit by Id");
 
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.CreateDbIfNotExists();
 
-
-app.CreateDbIfNotExists();
-
-app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.Run();

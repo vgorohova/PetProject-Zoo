@@ -16,5 +16,7 @@ public class ZooContext : DbContext
     public DbSet<Animal> Animals => Set<Animal>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=localhost;Database=zoo;Username=postgres;Password=QAZwsx123");
+            => optionsBuilder.UseNpgsql("Host=zoo-postgres;Server=zoo-postgres;Port=5432;Database=zoo;Username=postgres;Password=postgres");
+        
+            // Configuration.GetConnectionString("ZooContext")
 }
